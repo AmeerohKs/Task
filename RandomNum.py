@@ -1,23 +1,30 @@
 import random
-print("This is Quessing Game, we will strat now!")
+
+print("This is Guessing Game, we will start now!")
+
 def guessing_game():
     while True:
-        number_to_guess = random.randint(1, 100)
-        print("I'm thinking of a number between 1 and 100.")
+        number_to_guess = random.randint(1, 10)
+        print("\nI'm thinking of a number between 1 and 10.")
         
         while True:
             try:
-                guess = int(input("Take a guess: "))
+                guess_input = input("Take a guess: ")
+                
+                if not guess_input.isdigit():
+                    raise ValueError("Input is not a valid integer.")
+                
+                guess = int(guess_input)
                 
                 if guess == number_to_guess:
-                    print("Congrate!, you guessed it!")
+                    print("Congratulations! You guessed it!")
                     break
                 elif guess < number_to_guess:
                     print("Too low! Try again.")
                 else:
                     print("Too high! Try again.")
             except ValueError:
-                print("Invalid input. Please enter a number only.")
+                print("Invalid input. Please enter a whole number (no decimals).")
         
         choice = input("Would you like to play with me again? (yes/no): ").lower()
         if choice != 'yes':
